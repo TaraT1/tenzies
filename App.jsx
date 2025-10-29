@@ -23,7 +23,8 @@ export default function App() {
         }))
     }
     //map over dice; Can also map in <main> 
-    const diceElements = dice.map(dieObj => <Die key={dieObj.id} value={dieObj.value} />)
+    const diceElements = dice.map(dieObj => (
+        <Die key={dieObj.id} value={dieObj.value} isHeld={dieObj.isHeld}/>))
 
     function rollDice() {
         setDice(allNewDice)
