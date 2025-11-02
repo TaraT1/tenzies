@@ -4,9 +4,11 @@ export default function Die(props) {
     }
 
     return(
-        <button style={styles}>
-            {props.value}
-        </button>
+        <button 
+            style={styles}
+            onClick={() => props.hold(props.id)}
+            
+        > {props.value}</button>
     )
 
 }

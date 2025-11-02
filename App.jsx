@@ -1,19 +1,11 @@
 import { useState } from "react"
 import Die from "./Die"
-import { nanoid } from "nanoid" //generates random id
+import { nanoid } from "nanoid" //3rd party pkg ghatgenerates random id
 
 export default function App() {
-    /**
-     * array of numbers ---> array of objects
-     * object is comprised of { value: <rando num>, isHeld: false }
-     * Correct breaking code
-     */
+    const [dice, setDice] = useState(generateAllNewDice())
 
-
-    const [dice, setDice] = useState(allNewDice())
-
-    function allNewDice() {
-        //array of 10 random nums - Functional
+    function generateAllNewDice() {
         return new Array(10)
             .fill(0)
             .map(() => ({
@@ -22,16 +14,26 @@ export default function App() {
                 id: nanoid()
         }))
     }
-    //map over dice; Can also map in <main> 
-    const diceElements = dice.map(dieObj => (
-        <Die key={dieObj.id} value={dieObj.value} isHeld={dieObj.isHeld}/>))
 
     function rollDice() {
-        setDice(allNewDice)
+        setDice(generateAllNewDice)
     }
 
-    return (
-        <main>
+    function hold(id) {
+        console.log(id)
+    }
+
+    const diceElements = dice.map(dieObj => (
+        <Die 
+            key={dieObj.id} 
+            value={dieObj.value} 
+            isHeld={dieObj.isHeld}
+            hold={hold}
+            id={dieObj.id}
+            />
+        ))
+    
+    return ( <main>
             <div className="dice-container">
             {diceElements}
             </div>
