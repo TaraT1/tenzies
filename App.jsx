@@ -16,11 +16,17 @@ export default function App() {
     }
 
     function rollDice() {
-        setDice(generateAllNewDice)
+        setDice(oldDice => oldDice.map(die =>
+            die.isHeld ? die : {...die, value: Math.ceil(Math.random() * 6 )}
+        ))
     }
 
-    function hold(id) {
-        console.log(id)
+    function hold(id) {//change isHeld depending whether clicked
+        setDice(oldDice => oldDice.map(die =>
+            die.id === id ?
+                { ...die, isHeld: !die.isHeld } :
+                die
+        ))
     }
 
     const diceElements = dice.map(dieObj => (
