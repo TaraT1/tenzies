@@ -34,14 +34,17 @@ export default function App() {
             key={dieObj.id} 
             value={dieObj.value} 
             isHeld={dieObj.isHeld}
-            hold={hold}
+            hold={hold} //2hold={(dieObj.id)} (don't need to pass down id in next line)
             id={dieObj.id}
             />
         ))
     
-    return ( <main>
+    return ( 
+        <main>
+            <h1 className="title">Tenzies</h1>
+            <p className="instructions">Roll until all dice are the same. Click each die to freeze it at its current value between rolls.</p>
             <div className="dice-container">
-            {diceElements}
+                {diceElements}
             </div>
 
             <button className="roll-dice" onClick={rollDice}>
