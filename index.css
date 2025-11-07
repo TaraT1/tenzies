@@ -40,7 +40,7 @@ main {
     font-family: 'Inter', sans-serif;
     font-weight: 400;
     text-align: center;
-    margin: 0, 20px;
+    padding: 0 20px;
 }
 
 .dice-container {
@@ -68,7 +68,9 @@ button {
 
 button.roll-dice {
     height: 50px;
-    width: 100px;
+    white-space: nowrap;
+    width: auto;
+    padding: 6px 21px;
     border: none;
     border-radius: 6px;
     background-color: #5035FF;
