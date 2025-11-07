@@ -1,6 +1,6 @@
 ```javascript
 // App.jsx
-function allNewDice() { //Imperative
+function allNewDice() { //Imperative approach
     // array of 10 random nums
     const newDice = [] 
 
@@ -13,3 +13,12 @@ function allNewDice() { //Imperative
 
 }
 ```
+
+## Lesson 12 end game
+critical thinking:
+- game over when 1: all dice are held & 2: all dice have same value. How do this?
+1. `gameWon` - save in state?  
+No can use setDice to check if gameWon conditions are met
+
+2. create side effect to synchronize gameWon value whether it's in state or not with the current state of the dice?  
+No. Don-t need side effect. Can derive gameWon status based on condition of current dice state on every render

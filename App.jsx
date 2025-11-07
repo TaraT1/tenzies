@@ -1,9 +1,20 @@
 import { useState } from "react"
 import Die from "./Die"
-import { nanoid } from "nanoid" //3rd party pkg ghatgenerates random id
+import { nanoid } from "nanoid" //3rd party pkg that generates random id
 
 export default function App() {
     const [dice, setDice] = useState(generateAllNewDice())
+
+    // check if all dice are held and all dice have same value
+    const allHeld = dice.every(die => die.isHeld)
+    const allSameValue = dice.every(die => die.value === dice[0].value)
+
+    if (allHeld && allSameValue) {
+        console.log("You won, Baaaaby!")
+    }
+
+    const gameWon = allHeld && allSameValue
+
 
     function generateAllNewDice() {
         return new Array(10)
@@ -48,7 +59,7 @@ export default function App() {
             </div>
 
             <button className="roll-dice" onClick={rollDice}>
-                Roll 
+                {gameWon ? "New Game?" : "Roll"} 
             </button>
 
         </main>
