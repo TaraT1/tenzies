@@ -4,7 +4,7 @@ import { nanoid } from "nanoid" //3rd party pkg that generates random id
 import Confetti from "react-confetti"
 
 export default function App() {
-    const [dice, setDice] = useState(generateAllNewDice())
+    const [dice, setDice] = useState(() => generateAllNewDice())
 
     // check if all dice are held and all dice have same value
     const allHeld = dice.every(die => die.isHeld)
