@@ -10,12 +10,7 @@ export default function App() {
     const allHeld = dice.every(die => die.isHeld)
     const allSameValue = dice.every(die => die.value === dice[0].value)
 
-    if (allHeld && allSameValue) {
-        console.log("You won, Baaaaby!")
-    }
-
     const gameWon = allHeld && allSameValue
-
 
     function generateAllNewDice() {
         return new Array(10)
@@ -27,12 +22,17 @@ export default function App() {
         }))
     }
 
-    function rollDice() {
-        setDice(oldDice => oldDice.map(die =>
-            die.isHeld ? die : {...die, value: Math.ceil(Math.random() * 6 )}
-        ))
-    }
 
+    function rollDice() {
+        if(!gameWon) { 
+            setDice(oldDice => oldDice.map(die =>
+            die.isHeld ? die : {...die, value: Math.ceil(Math.random() * 6 )}
+        )) 
+        } else {
+            setDice(generateAllNewDice())
+        }  
+    }
+    
     function hold(id) {//change isHeld depending whether clicked
         setDice(oldDice => oldDice.map(die =>
             die.id === id ?
@@ -61,7 +61,7 @@ export default function App() {
             </div>
 
             <button className="roll-dice" onClick={rollDice}>
-                {gameWon ? "New Game" : "Roll"} 
+                {gameWon ? "New Game"  : "Roll"} 
             </button>
 
         </main>
